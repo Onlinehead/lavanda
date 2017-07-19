@@ -1,0 +1,39 @@
+# # == Description of first plant ==
+# Name of plant
+name: first_plant
+# Set default settings
+defaults:
+  # Default repo of seeds (that is actually local which mean just specified directory)
+  repo:
+    type: dir
+    location: ../../seeds
+  # Default color for all seeds
+  color: gray
+# Seeds we need to deploy
+seeds:
+  nginx:
+    # Specify git repo for get seed
+    repo:
+      type: github
+      location: onlinehead/lavanda-repo/
+    # Use blue color for nginx
+    color: blue
+    # Deploy mysql before nginx
+    after: mysql
+  mysql:
+    repo:
+      type: git
+      localtion: ssh://localrepo:9000/lavanda-repo/
+    color: white
+    # Deploy memcached and backend before mysql
+    after:
+    - memcached
+    - backend
+  backend:
+    # Use green color for backend
+    color: green
+    - box:
+        # Override tag in color
+        tag: 1.2
+  # Deploy memcached in default configuration with white color
+  memcached

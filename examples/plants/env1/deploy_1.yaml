@@ -1,0 +1,9 @@
+# == Description of second plant ==
+# Name of second deploy
+name: second_deploy
+# Use first_deploy as base for second one
+over: first_deploy
+seeds:
+  mssql:
+  - box:
+    tag: 5.6

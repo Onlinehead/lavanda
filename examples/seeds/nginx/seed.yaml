@@ -1,0 +1,36 @@
+# == Here is a description of desired nginx service ==
+# Name of seed
+name: Nginx
+# Seed version
+version: 0.1-test
+
+# That block describe a main parameters of service
+service:
+  # Now many replicas we need
+  replicas:
+    # How many replicas we need (digit/everywhere)
+    count: 3
+    # We will spawn replicas one by one
+    style: rolling
+    # Restart policy for replicas
+    restart: always
+  # Description for volumes for our service
+  volumes:
+    vol_1:
+      # Type of volume (node/elb/ceph)
+      type: node
+      # Create if not exists (force/wait/first)
+      exists: force
+      path: /tmp/
+  ports:
+    http: 80
+    https: 8080
+# Sticks and it's mount points
+sticks:
+  default: "/etc/nginx/nginx.conf"
+# How we will get access to service from outside
+access:
+  # We need access
+  expose: true
+  # How we will get access to service (nginx/nodeport/gce)
+  type: nginx

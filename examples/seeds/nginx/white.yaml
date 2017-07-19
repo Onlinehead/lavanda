@@ -1,0 +1,13 @@
+# Where and which container we need to use
+box:
+  repo: localhost:5000
+  name: nginx
+  tag: latest
+# Environment variables for set it everywhere
+envs:
+# Array with names of variables
+- TEST_ENV:
+    # Value of variable
+    value: "test value"
+    # Use that variable in all colors even if it's not set in them
+    always: true
